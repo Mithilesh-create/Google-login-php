@@ -16,7 +16,7 @@ $client->setClientId('231703390647-r0gf1o95dsf9km8u4qcdk7qesoavcig3.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('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');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/testlogin/login.php');
+$client->setRedirectUri('http://localhost/Google-login-php/login.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
