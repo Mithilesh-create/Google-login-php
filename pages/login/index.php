@@ -1,12 +1,13 @@
 <?php
-require 'connect.php';
+require '../../connect/connect.php';
 
 if (isset($_SESSION['login_id'])) {
-    header('Location: home.php');
+    $location = "../welcome/index.php";
+    header('Location: ' . $location);
     exit;
 }
 
-require 'google-api/vendor/autoload.php';
+require '../../Libraries/google-api/vendor/autoload.php';
 
 // Creating new google client instance
 $client = new Google_Client();
@@ -16,7 +17,7 @@ $client->setClientId('231703390647-r0gf1o95dsf9km8u4qcdk7qesoavcig3.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('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');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/Google-login-php/login.php');
+$client->setRedirectUri('http://localhost/InternshipPortal/pages/login/index.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -46,7 +47,8 @@ if (isset($_GET['code'])):
         if (mysqli_num_rows($get_user) > 0) {
 
             $_SESSION['login_id'] = $id;
-            header('Location: home.php');
+            $location = "../welcome/index.php";
+            header('Location: ' . $location);
             exit;
 
         } else {
@@ -56,7 +58,8 @@ if (isset($_GET['code'])):
 
             if ($insert) {
                 $_SESSION['login_id'] = $id;
-                header('Location: home.php');
+                $location = "../welcome/index.php";
+                header('Location: ' . $location);
                 exit;
             } else {
                 echo "Sign up failed!(Something went wrong).";
@@ -65,7 +68,8 @@ if (isset($_GET['code'])):
         }
 
     } else {
-        header('Location: login.php');
+        $location = "../login/index.php";
+        header('Location: ' . $location);
         exit;
     }
 
